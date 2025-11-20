@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kader Bastem | Data & BI Portfolio</title>
-   <style>
+
+    <style>
     :root {
         --bg-gradient: linear-gradient(135deg, #ff4b8b, #7b2ff7);
         --page-bg: radial-gradient(circle at top, #1a1027 0, #050510 45%, #020008 100%);
@@ -24,8 +25,8 @@
 
     body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: var(--page-bg);   /* BAŞLANGIÇTA DARK MOD */
-        color: var(--text-main);      /* Yazılar açık renk */
+        background: var(--page-bg);
+        color: var(--text-main);
         line-height: 1.6;
     }
 
@@ -37,15 +38,13 @@
         text-decoration: underline;
     }
 
-    /* Genel layout */
-
     .page {
         max-width: 1100px;
         margin: 0 auto;
         padding: 24px 16px 64px;
     }
 
-    /* HERO KISMI */
+    /* HERO */
 
     .hero {
         background: radial-gradient(circle at top left, #ff4b8b33, transparent 60%),
@@ -95,7 +94,7 @@
         gap: 10px;
     }
 
-    /* BUTONLAR – NORMAL HAL + HOVER FARKLI */
+    /* BUTTONS */
 
     .btn {
         display: inline-flex;
@@ -110,7 +109,6 @@
         text-decoration: none;
     }
 
-    /* Bana Ulaş – default pembe/mor, ama hover’da biraz daha glow */
     .btn-primary {
         background: var(--bg-gradient);
         color: #fff;
@@ -121,19 +119,17 @@
         box-shadow: 0 16px 40px rgba(0,0,0,0.8);
     }
 
-    /* LinkedIn / Medium / GitHub – normalde sade, sadece hover’da pembe/mor olsun */
     .btn-ghost {
-        background: rgba(10, 10, 25, 0.9);            /* artık hover gibi durmuyor */
+        background: rgba(10, 10, 25, 0.9);
         border: 1px solid var(--border-subtle);
         color: var(--text-muted);
     }
     .btn-ghost:hover {
-        background: var(--bg-gradient);               /* sadece ÜZERİNE GELİNCE gradient */
+        background: var(--bg-gradient);
         border-color: transparent;
         color: #fff;
         transform: translateY(-2px);
         box-shadow: 0 10px 32px rgba(255, 75, 139, 0.5);
-        text-decoration: none;
     }
 
     .hero-right {
@@ -162,7 +158,7 @@
         color: var(--text-main);
     }
 
-    /* BÖLÜMLER */
+    /* SECTIONS */
 
     .section {
         margin-top: 32px;
@@ -187,7 +183,7 @@
     }
 
     .card {
-        background: var(--card-bg);                    /* koyu kart */
+        background: var(--card-bg);
         border-radius: 18px;
         padding: 18px 18px 20px;
         border: 1px solid var(--border-subtle);
@@ -202,7 +198,7 @@
 
     .card p {
         font-size: 0.92rem;
-        color: var(--text-muted);                     /* okunaklı açık gri */
+        color: var(--text-muted);
     }
 
     .list {
@@ -215,24 +211,6 @@
         color: var(--text-muted);
         padding: 3px 0;
     }
-
-    .pill-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 8px;
-    }
-
-    .pill {
-        font-size: 0.8rem;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--border-subtle);
-        background: rgba(20, 20, 40, 0.9);
-        color: var(--text-muted);
-    }
-
-    /* PROJELER / YAYINLAR KARTLARI */
 
     .project-grid {
         display: grid;
@@ -278,17 +256,16 @@
         color: var(--text-muted);
         margin-top: 40px;
     }
-</style>
-
+    </style>
 </head>
+
 <body>
 
-<button class="theme-toggle" aria-label="Toggle theme">🌙</button>
-
 <div class="page">
+
+    <!-- HERO -->
     <section class="hero">
         <div>
-            
             <h1 class="hero-title">Kader Bastem</h1>
             <p class="hero-subtitle">Power BI • SQL • Microsoft Fabric • Data Modeling</p>
             <p class="hero-tagline">
@@ -296,46 +273,55 @@
                 Üretim, operasyon ve performans odaklı veri analizleri geliştiriyor; modern veri modelleme 
                 teknikleriyle içgörü üreten dashboardlar oluşturmaktan keyif alıyorum.
             </p>
+
             <div class="hero-buttons">
-                <a class="btn btn-primary" href="mailto:bastemkader@gmail.com">📧 Bana Ulaş</a>
+                <a class="btn btn-ghost" href="mailto:bastemkader@gmail.com">📧 Bana Ulaş</a>
                 <a class="btn btn-ghost" href="https://www.linkedin.com/in/kaderbastem/" target="_blank">🔗 LinkedIn</a>
                 <a class="btn btn-ghost" href="https://kaderbastem.medium.com/" target="_blank">✍️ Medium</a>
                 <a class="btn btn-ghost" href="https://github.com/kaderbastem" target="_blank">🐙 GitHub</a>
             </div>
         </div>
+
         <div class="hero-right">
             <img src="https://avatars.githubusercontent.com/u/208313465?v=4" class="avatar" alt="Kader Bastem">
             <div class="hero-chip">İş Zekası • Veri Analitiği</div>
         </div>
     </section>
 
+
+    <!-- EĞİTİM -->
     <section class="section">
         <div class="section-title">Eğitim</div>
         <div class="card">
             <h3>Fırat Üniversitesi – Yazılım Mühendisliği</h3>
-            
         </div>
     </section>
 
+    <!-- DENEYİM -->
     <section class="section">
         <div class="section-title">Deneyim</div>
         <div class="card">
             <h3>Freelance Veri Analizi & BI Projeleri</h3>
             <p>Çeşitli sektörlerde Power BI dashboard geliştirme.</p>
+
             <h3>Çözüm Group</h3>
             <p>Muhasebe</p>
-             <h3>Mrs Group</h3>
+
+            <h3>Mrs Group</h3>
             <p>Muhasebe</p>
+
             <h3>Turuncu İnternet - Staj</h3>
             <p>Gönüllü Staj.</p>
-            <h3>Netaş -  Stajyer</h3>
+
+            <h3>Netaş - Stajyer</h3>
             <p>Uzun dönem staj süreci.</p>
+
             <h3>BilKav – Veri Analizi Stajyeri</h3>
             <p>Veri analizi ve BI konularında staj süreci.</p>
-            
         </div>
     </section>
 
+    <!-- YETENEKLER -->
     <section class="section">
         <div class="section-title">Yetenekler</div>
         <div class="card">
@@ -350,6 +336,7 @@
         </div>
     </section>
 
+    <!-- SERTİFİKALAR -->
     <section class="section">
         <div class="section-title">Sertifikalar</div>
         <div class="card">
@@ -363,73 +350,57 @@
         </div>
     </section>
 
+    <!-- PROJELER -->
     <section class="section">
         <div class="section-title">Projeler</div>
         <div class="project-grid">
+
             <div class="project-card">
                 <h3>🏅 Olimpiyat Verisi Analiz Projesi</h3>
                 <p class="project-meta">Power BI • Kaggle • Veri Temizleme & Modelleme</p>
                 <p>
                     Kaggle’daki athlete_events ve noc_regions veri setleriyle;
-                    eksik/hatalı değerlerin temizlendiği, NOC kodlarının düzeltildiği
-                    ve Star Schema veri modelinin kurulduğu bir olimpiyat analizi çalışması.
+                    eksik/hatalı değerlerin temizlendiği ve Star Schema veri modelinin kurulduğu bir analiz çalışması.
                 </p>
                 <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/OlimpiyaVeriseti" target="_blank">
                     → Proje dosyalarını görüntüle
                 </a>
             </div>
+
             <div class="project-card">
                 <h3>🏥 Hastane Hasta ve Yönetim Dashboard Projesi</h3>
                 <p class="project-meta">Power BI • Sağlık Analitiği</p>
                 <p>
                     Hasta profili, yaş & cinsiyet dağılımı, yönetim indirimleri,
-                    ziyaretçi sayıları ve memnuniyet skorlarını içeren;
-                    AM/PM filtreleme ve ısı haritası gibi gelişmiş görselleştirmelere sahip
-                    bir dashboard çalışmasıdır.
+                    ziyaretçi sayıları ve memnuniyet skorlarını içeren gelişmiş bir dashboard.
                 </p>
                 <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/HastanePbi" target="_blank">
                     → Proje dosyalarını görüntüle
                 </a>
             </div>
+
             <div class="project-card">
-                <h3>👩‍💻 Freelance Proje Yönetimi & Analizi – Power BI Dashboard</h3>
+                <h3>👩‍💻 Freelance Proje Yönetimi & Analizi</h3>
                 <p class="project-meta">Power BI • Finans & Müşteri Analizi</p>
                 <p>
                     Freelance çalışan bir birey için proje performansı, müşteri memnuniyeti
-                    ve finansal sonuçları analiz eden;
-                    Proje, Müşteri ve Finansal performans sayfalarından oluşan
-                    Star Schema tabanlı bir dashboard çalışmasıdır.
+                    ve finansal durum analizinin yer aldığı Star Schema tabanlı dashboard.
                 </p>
                 <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/FreelanceDataset" target="_blank">
                     → Proje dosyalarını görüntüle
                 </a>
             </div>
+
         </div>
     </section>
 
     <footer>
-        © <span id="year"></span> Kader Bastem 
+        © <span id="year"></span> Kader Bastem
     </footer>
 </div>
 
 <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const toggle = document.querySelector('.theme-toggle');
-    toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-    });
-
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark');
-        toggle.textContent = '☀️';
-    } else {
-        document.body.classList.remove('dark');
-        toggle.textContent = '🌙';
-    }
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
