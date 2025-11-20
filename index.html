@@ -127,20 +127,28 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
      
-        .btn-ghost {
-            background: var(--light-card-bg);
-            border: 1px solid #ddd;
-            color: var(--light-text-muted);
-        }
+       
         body.dark .btn-ghost {
             background: rgba(10,10,20,0.8);
             border: 1px solid var(--border-subtle);
             color: var(--text-muted);
         }
-        .btn-ghost:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+       /* Tüm ikonlu butonlara modern hover efekti */
+.btn-ghost {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #f4f4f4;
+    transition: 0.25s ease-in-out;
+}
+
+.btn-ghost:hover {
+    background: linear-gradient(135deg, #ff4b8b, #7b2ff7);
+    border-color: transparent;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255, 75, 139, 0.45);
+}
+
 
         .hero-right {
             display: flex;
