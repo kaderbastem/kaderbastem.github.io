@@ -32,7 +32,7 @@
 
     a {
         color: var(--accent);
-        text-decoration: none;
+        text-decoration: none !important;
     }
     a:hover {
        text-decoration: none !important;
@@ -42,11 +42,13 @@
         max-width: 1100px;
         margin: 0 auto;
         padding: 24px 16px 64px;
+        position: relative;
     }
 
     /* HERO */
 
     .hero {
+        position: relative;
         background: radial-gradient(circle at top left, #ff4b8b33, transparent 60%),
                     radial-gradient(circle at top right, #7b2ff733, transparent 60%);
         border-radius: 24px;
@@ -106,17 +108,22 @@
         border: 1px solid transparent;
         cursor: pointer;
         transition: 0.2s all ease-out;
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
+    /* Şu an kullanılmıyor ama dursun: istersek ilerde primary yaparız */
     .btn-primary {
-        background: var(--bg-gradient);
-        color: #fff;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+        background: rgba(10, 10, 25, 0.9);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: #e6e6e6;
+        transition: 0.25s ease-in-out;
     }
     .btn-primary:hover {
+        background: linear-gradient(135deg, #ff4b8b, #7b2ff7);
+        border-color: transparent;
+        color: #fff;
         transform: translateY(-2px);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+        box-shadow: 0 10px 35px rgba(255, 75, 139, 0.5);
     }
 
     .btn-ghost {
@@ -130,7 +137,6 @@
         color: #fff;
         transform: translateY(-2px);
         box-shadow: 0 10px 32px rgba(255, 75, 139, 0.5);
-       
     }
 
     .hero-right {
@@ -157,6 +163,39 @@
         background: var(--accent-soft);
         border: 1px solid rgba(255, 75, 139, 0.45);
         color: var(--text-main);
+    }
+
+    /* THEME TOGGLE */
+
+    .theme-toggle {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: rgba(8,8,20,0.9);
+        border: 1px solid rgba(255,255,255,0.18);
+        padding: 6px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        color: #f8f7ff;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.25s ease-in-out;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        z-index: 10;
+    }
+
+    .theme-toggle:hover {
+        background: var(--bg-gradient);
+        border-color: transparent;
+        box-shadow: 0 8px 26px rgba(255,75,139,0.6);
+        transform: translateY(-1px);
+    }
+
+    .theme-toggle span {
+        font-size: 1rem;
     }
 
     /* SECTIONS */
@@ -257,6 +296,58 @@
         color: var(--text-muted);
         margin-top: 40px;
     }
+
+    /* LIGHT MODE OVERRIDES */
+
+    body.light-mode {
+        background: #f5f5fa;
+        color: #222222;
+    }
+
+    body.light-mode .hero {
+        background: linear-gradient(135deg, #ffffff, #f5e9ff);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    body.light-mode .card,
+    body.light-mode .project-card {
+        background: #ffffff;
+        border-color: rgba(0,0,0,0.06);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    body.light-mode .card h3,
+    body.light-mode .project-card h3,
+    body.light-mode .hero-title {
+        color: #222222;
+    }
+
+    body.light-mode .hero-subtitle,
+    body.light-mode .hero-tagline,
+    body.light-mode .card p,
+    body.light-mode .project-card p,
+    body.light-mode .list li,
+    body.light-mode .project-meta {
+        color: #555555;
+    }
+
+    body.light-mode .theme-toggle {
+        background: rgba(255,255,255,0.9);
+        color: #222222;
+        border-color: rgba(0,0,0,0.12);
+    }
+
+    body.light-mode .btn-ghost {
+        background: #f3f3fb;
+        border-color: rgba(0,0,0,0.08);
+        color: #444;
+    }
+
+    body.light-mode .btn-ghost:hover {
+        background: var(--bg-gradient);
+        color: #fff;
+        border-color: transparent;
+    }
     </style>
 </head>
 
@@ -266,6 +357,12 @@
 
     <!-- HERO -->
     <section class="hero">
+        <!-- Tema toggle (sağ üst) -->
+        <button id="theme-toggle" class="theme-toggle">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-text">Dark</span>
+        </button>
+
         <div>
             <h1 class="hero-title">Kader Bastem</h1>
             <p class="hero-subtitle">Power BI • SQL • Microsoft Fabric • Data Modeling</p>
@@ -402,6 +499,27 @@
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Dark/Light toggle
+const toggleBtn = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
+const themeText = document.getElementById("theme-text");
+
+// Default: dark mode (no class) – sadece ikon yazısı ayarlı
+let isDark = true;
+
+toggleBtn.addEventListener("click", () => {
+    isDark = !isDark;
+    if (isDark) {
+        document.body.classList.remove("light-mode");
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Dark";
+    } else {
+        document.body.classList.add("light-mode");
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Light";
+    }
+});
 </script>
 
 </body>
