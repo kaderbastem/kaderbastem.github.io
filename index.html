@@ -5,210 +5,393 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kader Bastem | Data & BI Portfolio</title>
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ff4b8b, #7b2ff7);
+            --card-bg: #0f1020;
+            --text-main: #f9f9ff;
+            --text-muted: #b6b7d3;
+            --accent: #ff4b8b;
+            --accent-soft: rgba(255, 75, 139, 0.15);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --light-bg: #ffffff;
+            --light-card-bg: #f7f7f7;
+            --light-text-main: #333;
+            --light-text-muted: #666;
+            --light-accent: #0066cc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0; padding: 0;
-            background: #f7f7f7; color: #333;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text-main);
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: #ffffff;
-            box-shadow: 0 0 10px #ddd;
+
+        body.dark {
+            background: radial-gradient(circle at top, #2a153a 0, #050510 50%, #020108 100%);
+            color: var(--text-main);
         }
-        .profile-pic {
-            width: 150px; height: 150px;
+
+        a { color: var(--light-accent); text-decoration: none; }
+        body.dark a { color: var(--accent); }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 64px;
+        }
+
+        /* toggle switch */
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text-main);
+            z-index: 999;
+        }
+        body.dark .theme-toggle { color: var(--text-main); }
+
+        /* HERO */
+        .hero {
+            background: var(--light-bg);
+            border-radius: 24px;
+            padding: 32px 24px;
+            border: 1px solid #ddd;
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: center;
+        }
+        body.dark .hero {
+            background: none;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light-text-muted);
+            margin-bottom: 16px;
+        }
+        body.dark .hero-subtitle { color: var(--text-muted); }
+
+        .hero-tagline {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            transition: 0.18s all ease-out;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--bg-gradient);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+        }
+        .btn-ghost {
+            background: var(--light-card-bg);
+            border: 1px solid #ddd;
+            color: var(--light-text-muted);
+        }
+        body.dark .btn-ghost {
+            background: rgba(10,10,20,0.8);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+        .btn-ghost:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 0 10px #aaa;
-            margin-bottom: 15px;
+            border: 3px solid rgba(255,255,255,0.4);
         }
-        h1 { margin-bottom: 5px; }
-        .contact a {
-            display: inline-block;
-            margin: 5px 15px;
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 18px;
+
+        .hero-chip {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--light-accent);
+            color: var(--light-bg);
         }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px #ddd;
+        body.dark .hero-chip {
+            background: var(--accent-soft);
+            color: var(--text-main);
         }
-        h2 {
-            border-left: 6px solid #000;
-            padding-left: 10px;
+
+        /* Sections */
+        .section {
+            margin-top: 32px;
         }
-        .project {
-            background: #fafafa;
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--light-text-muted);
+            padding-top: 6px;
+            margin-bottom: 12px;
+        }
+        body.dark .section-title { color: var(--text-muted); }
+
+        .card {
+            background: var(--light-card-bg);
+            border-radius: 18px;
             padding: 20px;
-            margin-top: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 8px #eee;
+            color: var(--light-text-main);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            margin-bottom: 24px;
         }
-        ul { line-height: 1.8; }
+        body.dark .card {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .card h3 { margin-bottom: 8px; }
+        .card p { font-size: 0.92rem; color: var(--light-text-muted); }
+        body.dark .card p { color: var(--text-muted); }
+
+        .list { list-style: none; margin-top: 6px; padding-left: 0; }
+        .list li { padding: 3px 0; font-size: 0.9rem; color: var(--light-text-muted); }
+        body.dark .list li { color: var(--text-muted); }
+
+        .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .pill { font-size: 0.8rem; padding: 4px 10px; border-radius: 999px; background: var(--light-card-bg); color: var(--light-text-muted); border: 1px solid #ddd; }
+        body.dark .pill { background: rgba(20,20,40,0.9); color: var(--text-muted); border: 1px solid var(--border-subtle); }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            background: var(--light-card-bg);
+            border-radius: 18px;
+            padding: 16px 16px 18px;
+            border: 1px solid #eee;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+        body.dark .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+        }
+
+        .project-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+        .project-meta { font-size: 0.8rem; color: var(--light-text-muted); margin-bottom: 6px; }
+        body.dark .project-meta { color: var(--text-muted); }
+        .project-card p { font-size: 0.87rem; color: var(--light-text-muted); }
+        body.dark .project-card p { color: var(--text-muted); }
+        .project-card a { font-size: 0.85rem; font-weight: 500; }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--light-text-muted);
+            margin-top: 40px;
+        }
+        body.dark footer { color: var(--text-muted); }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="![Image](https://github.com/user-attachments/assets/4b64e850-8fd1-49b1-9afb-0483d348b2bb)" class="profile-pic" alt="Profil Fotoğrafı">
-    <h1>Kader Bastem</h1>
-    <p>Data Analyst • Business Intelligence • Power BI • SQL</p>
+<button class="theme-toggle" aria-label="Toggle theme">🌙</button>
 
-    <div class="contact">
-        <a href="mailto:bastemkaderægmail.com">📧 Mail</a>
-        <a href="https://www.linkedin.com/in/kaderbastem/">🔗 LinkedIn</a>
-        <a href="https://github.com/kaderbastem">🐙 GitHub</a>
-       <a href="https://kaderbastem.medium.com/">📘 Blog</a>
-    </div>
-</header>
+<div class="page">
+    <section class="hero">
+        <div>
+            <div class="hero-chip">Data & Business Intelligence</div>
+            <h1 class="hero-title">Kader Bastem</h1>
+            <p class="hero-subtitle">Power BI • SQL • Microsoft Fabric • Data Modeling</p>
+            <p class="hero-tagline">
+                Veri analitiği, Power BI, Microsoft Fabric ve SQL alanlarında çalışan bir Data & BI meraklısıyım.
+                Üretim, operasyon ve performans odaklı veri analizleri geliştiriyor; modern veri modelleme 
+                teknikleriyle içgörü üreten dashboardlar oluşturmaktan keyif alıyorum.
+            </p>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="mailto:bastemkader@gmail.com">📧 Bana Ulaş</a>
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/kaderbastem/" target="_blank">🔗 LinkedIn</a>
+                <a class="btn btn-ghost" href="https://kaderbastem.medium.com/" target="_blank">✍️ Medium</a>
+                <a class="btn btn-ghost" href="https://github.com/kaderbastem" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="https://avatars.githubusercontent.com/u/208313465?v=4" class="avatar" alt="Kader Bastem">
+            <div class="hero-chip">İş Zekası • Veri Analitiği</div>
+        </div>
+    </section>
 
-<section>
-    <h2>Hakkımda</h2>
-    <p>
-        Veri analitiği, Power BI, Microsoft Fabric ve SQL alanlarında çalışan bir Data & BI meraklısıyım.
-        Üretim, operasyon ve performans odaklı veri analizleri geliştiriyor; modern veri modelleme teknikleriyle 
-        içgörü üreten dashboardlar oluşturmaktan keyif alıyorum.
-    </p>
-</section>
+    <section class="section">
+        <div class="section-title">Eğitim</div>
+        <div class="card">
+            <h3>Fırat Üniversitesi – Yazılım Mühendisliği</h3>
+            
+        </div>
+    </section>
 
-<section>
-    <h2>Eğitim</h2>
-    <ul>
-        <li> Fırat Üniversitesi -Yazılım Mühendisliği – 2018</li>
-    </ul>
-</section>
+    <section class="section">
+        <div class="section-title">Deneyim</div>
+        <div class="card">
+            <h3>BilKav – Veri Analizi Stajyeri</h3>
+            <p>Veri analizi ve BI konularında staj süreci.</p>
+            <h3>Freelance Veri Analizi & BI Projeleri</h3>
+            <p>Çeşitli sektörlerde Power BI dashboard geliştirme.</p>
+        </div>
+    </section>
 
-<section>
-    <h2>Deneyim</h2>
-    <ul>
-      <li> BilKav -Veri Analizi Stajyeri</li>
+    <section class="section">
+        <div class="section-title">Yetenekler</div>
+        <div class="card">
+            <ul class="list">
+                <li>Power BI (Modelleme, DAX, Dashboard Tasarımı)</li>
+                <li>SQL / T-SQL</li>
+                <li>Microsoft Fabric & Lakehouse</li>
+                <li>Veri Modelleme (Star Schema)</li>
+                <li>Excel & Veri Temizleme</li>
+                <li>Veri Görselleştirme</li>
+            </ul>
+        </div>
+    </section>
 
-      <li> Freelance Veri Analizi ve BI Projeleri – Çeşitli sektörlerde Power BI dashboard geliştirme</li>
-    </ul>
-</section>
+    <section class="section">
+        <div class="section-title">Sertifikalar</div>
+        <div class="card">
+            <ul class="list">
+                <li>Uygulamalı Microsoft Power BI</li>
+                <li>Power Query | Power Pivot | Power BI | DAX | Veri Analizi</li>
+                <li>Excel’de Dashboard ve İleri Fonksiyonlar</li>
+                <li>SQL ile Veritabanı Sorgulama</li>
+                <li>SSIS – SQL Server Integration Services – Temel Seviye</li>
+            </ul>
+        </div>
+    </section>
 
-<section>
-    <h2>Yetenekler</h2>
-    <ul>
-        <li> Power BI (DAX, Data Modeling, Dashboard Design)</li>
-        <li> SQL (T-SQL)</li>
-        <li> Python</li>
-        <li> Excel, ETL, Veri Temizleme</li>
-        <li> Veri Görselleştirme</li>
-    </ul>
-</section>
+    <section class="section">
+        <div class="section-title">Projeler</div>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>🏅 Olimpiyat Verisi Analiz Projesi</h3>
+                <p class="project-meta">Power BI • Kaggle • Veri Temizleme & Modelleme</p>
+                <p>
+                    Kaggle’daki athlete_events ve noc_regions veri setleriyle;
+                    eksik/hatalı değerlerin temizlendiği, NOC kodlarının düzeltildiği
+                    ve Star Schema veri modelinin kurulduğu bir olimpiyat analizi çalışması.
+                </p>
+                <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/OlimpiyaVeriseti" target="_blank">
+                    → Proje dosyalarını görüntüle
+                </a>
+            </div>
+            <div class="project-card">
+                <h3>🏥 Hastane Hasta ve Yönetim Dashboard Projesi</h3>
+                <p class="project-meta">Power BI • Sağlık Analitiği</p>
+                <p>
+                    Hasta profili, yaş & cinsiyet dağılımı, yönetim indirimleri,
+                    ziyaretçi sayıları ve memnuniyet skorlarını içeren;
+                    AM/PM filtreleme ve ısı haritası gibi gelişmiş görselleştirmelere sahip
+                    bir dashboard çalışmasıdır.
+                </p>
+                <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/HastanePbi" target="_blank">
+                    → Proje dosyalarını görüntüle
+                </a>
+            </div>
+            <div class="project-card">
+                <h3>👩‍💻 Freelance Proje Yönetimi & Analizi – Power BI Dashboard</h3>
+                <p class="project-meta">Power BI • Finans & Müşteri Analizi</p>
+                <p>
+                    Freelance çalışan bir birey için proje performansı, müşteri memnuniyeti
+                    ve finansal sonuçları analiz eden;
+                    Proje, Müşteri ve Finansal performans sayfalarından oluşan
+                    Star Schema tabanlı bir dashboard çalışmasıdır.
+                </p>
+                <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/FreelanceDataset" target="_blank">
+                    → Proje dosyalarını görüntüle
+                </a>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2>Sertifikalar</h2>
-    <ul>
-        <li> Uygulamalı Microsoft PowerBi</li>
-      <li>Power Query|Power Pivot|Power BI|DAX|Veri Analizi</li>
-      <li>
-Excel'de Dashboard ve İleri Fonksiyonlar</li>
-      <li> SQL ile Veritabanı Sorgulama </li>
-      <li> SSIS – SQL Server Integration Services -Temel Seviye</li>
+    <footer>
+        © <span id="year"></span> Kader Bastem – Tüm hakları saklıdır.
+    </footer>
+</div>
 
-    </ul>
-</section>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<section>
-    <h2>Projeler</h2>
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    });
 
-    <!--  OLİMPİYAT PROJESİ -->
-    <div class="project">
-        <h3>🏅 Olimpiyat Verisi Analiz Projesi</h3>
-        <p>
-            Kaggle üzerindeki athlete_events ve noc_regions veri setlerinin temizlenmesi, dönüştürülmesi ve
-            Power BI üzerinde modelleme yapılarak analiz edilmesi amacıyla hazırlanmıştır.
-        </p>
-
-        <h4>Veri Temizleme</h4>
-        <ul>
-            <li> NA → NULL dönüşümleri</li>
-            <li>•Ülke isimlerinin standartlaştırılması</li>
-            <li> NOC kodlarının düzeltilmesi</li>
-            <li> Hatalı ağırlık değerlerinin normalize edilmesi</li>
-        </ul>
-
-        <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/OlimpiyaVeriseti" target="_blank">
-            → Proje Dosyaları (GitHub)
-        </a>
-    </div>
-
-    <!-- 🔵 HASTANE PROJESİ -->
-    <div class="project">
-        <h3>🏥 Hastane Hasta ve Yönetim Dashboard Projesi</h3>
-        <p>
-            Hasta profili, ziyaretçi yoğunluğu, memnuniyet ve yönetim indirim politikalarının analiz edildiği 
-            kapsamlı bir Power BI dashboard projesidir.
-        </p>
-        <ul>
-            <li> Cinsiyet, yaş grubu ve ırk analizleri</li>
-            <li> Bekleme süresi – memnuniyet ilişkisi</li>
-            <li> Yönetim indirimi değerlendirmesi</li>
-            <li> Dinamik AM/PM analizleri</li>
-        </ul>
-
-        <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/HastanePbi" target="_blank">
-            → Proje Dosyaları (GitHub)
-        </a>
-    </div>
-
-    <!-- 🔵 FREELANCE PROJESİ -->
-    <div class="project">
-        <h3>👩‍💻 Freelance Proje Yönetimi & Analizi – Power BI Dashboard</h3>
-        <p>
-            Freelance proje yönetimi, müşteri ilişkileri, teslim performansı ve finansal durumun analiz edildiği
-            3 sayfalık kapsamlı bir Power BI dashboard çalışmasıdır.
-        </p>
-
-        <ul>
-            <li> Proje performansı ve teslim trendleri</li>
-            <li> Müşteri bazlı kârlılık analizi</li>
-            <li> Kesinti oranları ve sebepleri</li>
-            <li> Revizyon – süre ilişkisi</li>
-        </ul>
-
-        <a href="https://github.com/kaderbastem/Pbi_Orneklerim/tree/main/FreelanceDataset" target="_blank">
-            → Proje Dosyaları (GitHub)
-        </a>
-    </div>
-
-</section>
-<section>
-    <h2>Yayınlar</h2>
-
-    <div class="project">
-        <h3> Blog (Medium)</h3>
-        <p>Medium üzerinde veri analitiği, iş zekası ve teknoloji üzerine yazılar.</p>
-        <a href="https://kaderbastem.medium.com/" target="_blank">→ Blogu görüntüle</a>
-    </div>
-
-    <div class="project">
-        <h3>📄 MINT Ülkeleri için İş Zekası ve Bağlı Uzmanlıklarla LinkedIn Veri Madenciliği Uygulaması</h3>
-        <p>Akademik Bilişim Konferansı – 1 Şub 2018</p>
-        <a href="http://ab2018.karabuk.edu.tr/AB2018_Bildiri_Kitabi_V8_kapakli.pdf" target="_blank">→ Yayını göster</a>
-    </div>
-
-    <div class="project">
-        <h3>📄 İş Zekası ve Bağlı Uzmanlıklar için LinkedIn Veri Madenciliği Uygulaması</h3>
-        <p>YBS Ansiklopedisi – 20 Haz 2017</p>
-        <a href="https://ybsansiklopedi.com/cilt-4-sayi-2-haziran-2017/" target="_blank">→ Yayını göster</a>
-    </div>
-
-    <div class="project">
-        <h3>📄 Veri Madenciliği Yöntemleri ile Twitter Üzerinden MBTI Kişilik Tipi Analizi</h3>
-        <p>YBS Ansiklopedisi – 1 Haz 2017</p>
-        <a href="https://ybsansiklopedi.com/cilt-4-sayi-2-haziran-2017/" target="_blank">→ Yayını göster</a>
-    </div>
-
-</section>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        toggle.textContent = '☀️';
+    } else {
+        document.body.classList.remove('dark');
+        toggle.textContent = '🌙';
+    }
+</script>
 
 </body>
 </html>
